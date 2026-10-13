@@ -1,0 +1,22 @@
+---
+// Editorial headline: a tall serif with the first letter of each word
+// (or only the first word) set as a script swash.
+interface Props {
+  text: string;
+  as?: 'h1' | 'h2' | 'span';
+  swash?: 'words' | 'first';
+  class?: string;
+}
+
+const { text, as: Tag = 'h2', swash = 'words', class: className } = Astro.props;
+const words = text.split(/\s+/).filter(Boolean);
+---
+
+<Tag class:list={['display', className]}>
+  {words.map((word, i) => (
+    <Fragment>
+      {i > 0 && ' '}
+      <span class="word">{(swash === 'words' || i === 0) ? <Fragment><span class="swash">{word[0]}</span>{word.slice(1)}</Fragment> : word}</span>
+    </Fragment>
+  ))}
+</Tag>

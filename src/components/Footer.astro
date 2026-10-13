@@ -1,10 +1,10 @@
 ---
-import { AUTHOR } from '../consts';
+import { ROLE } from '../consts';
 
 const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
-  <span>© {year} {AUTHOR}</span>
-  <a href="/rss.xml">RSS</a>
+  <span>{ROLE}</span>
+  <span>{year}</span>
 </footer>

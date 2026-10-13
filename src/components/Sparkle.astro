@@ -1,0 +1,29 @@
+---
+// Hand-drawn-looking star with uneven rays.
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+// [angle in degrees, ray length]
+const rays: [number, number][] = [
+  [-58, 48], [-22, 30], [10, 44], [42, 24], [92, 40], [148, 46], [196, 26], [236, 38],
+];
+const inner = 4.5;
+const points = rays
+  .flatMap(([angle, length], i) => {
+    const next = rays[(i + 1) % rays.length][0] + (i === rays.length - 1 ? 360 : 0);
+    const mid = ((angle + next) / 2) * (Math.PI / 180);
+    const a = angle * (Math.PI / 180);
+    return [
+      `${(Math.cos(a) * length).toFixed(1)},${(Math.sin(a) * length).toFixed(1)}`,
+      `${(Math.cos(mid) * inner).toFixed(1)},${(Math.sin(mid) * inner).toFixed(1)}`,
+    ];
+  })
+  .join(' ');
+---
+
+<svg class:list={['sparkle', className]} viewBox="-50 -50 100 100" aria-hidden="true">
+  <polygon points={points} fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+</svg>

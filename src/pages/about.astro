@@ -1,16 +1,44 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Display from '../components/Display.astro';
+import Sparkle from '../components/Sparkle.astro';
+import portrait from '../assets/zaid.jpg';
 ---
 
-<BaseLayout title="About" description="About me and this blog.">
-  <div class="prose">
-    <h1>About</h1>
-    <p>
-      Hi, I'm Zaid. I write about software, tools, and whatever I'm currently
-      learning. This blog is my place to work through ideas in public.
-    </p>
-    <p>
-      You can follow along via the <a href="/rss.xml">RSS feed</a>.
-    </p>
-  </div>
+<BaseLayout
+  title="About"
+  description="USC Economics and Data Science grad working in AI-driven physical security, writing about up-and-coming tech and where it’s headed."
+>
+  <section class="about">
+    <div class="about-intro">
+      <Display as="h1" text="About Me" class="about-heading" />
+      <p>
+        Hi, I’m Zaid. I recently graduated from the University of Southern
+        California, where I studied Economics and Data Science. Today I work in
+        AI-driven physical security, and I’ve promised myself to stay on top of
+        where technology is heading.
+      </p>
+    </div>
+    <div class="about-panel">
+      <figure class="about-photo">
+        <Image
+          src={portrait}
+          alt="Zaid Ahmed smiling in a white shirt and USC Class of 2026 graduation stole"
+          widths={[480, 800, 1200]}
+          sizes="(max-width: 760px) 100vw, 30rem"
+          loading="eager"
+        />
+        <Sparkle class="about-sparkle" />
+      </figure>
+      <p>
+        This blog keeps me accountable. Each post takes an up-and-coming
+        technology and breaks down what it is, which industries it’s likely to
+        change, and what it could become. I write them to be easy to read, so
+        you can keep up alongside me. Want to connect? Find me on
+        <a href="https://www.linkedin.com/in/zaid-ahmed1">LinkedIn</a> or reach
+        me at <a href="mailto:zaidnahmed25@gmail.com">email</a>.
+      </p>
+    </div>
+  </section>
 </BaseLayout>

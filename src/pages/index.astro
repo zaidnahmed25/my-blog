@@ -1,8 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Display from '../components/Display.astro';
 import PostList from '../components/PostList.astro';
-import { SITE_DESCRIPTION } from '../consts';
+import Sparkle from '../components/Sparkle.astro';
+import { HERO_LINES, SITE_DESCRIPTION } from '../consts';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -10,6 +12,20 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
 ---
 
 <BaseLayout>
-  <p class="intro">{SITE_DESCRIPTION}</p>
-  <PostList posts={posts} />
+  <section class="hero">
+    <h1 class="hero-title" aria-label={HERO_LINES.join(' ')}>
+      {HERO_LINES.map((line, i) => (
+        <Display as="span" text={line} class={`hero-line hero-line-${i + 1}`} />
+      ))}
+    </h1>
+    <Sparkle class="hero-sparkle" />
+  </section>
+
+  <section class="contents" id="posts">
+    <div class="contents-side">
+      <p class="contents-blurb">{SITE_DESCRIPTION}</p>
+      <Display text="Posts" class="contents-heading" />
+    </div>
+    <PostList posts={posts} />
+  </section>
 </BaseLayout>
