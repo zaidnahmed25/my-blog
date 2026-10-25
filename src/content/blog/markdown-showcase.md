@@ -3,6 +3,7 @@ title: "Markdown Showcase"
 description: "A quick tour of the Markdown features this blog supports."
 pubDate: 2026-10-10
 tags: ["meta", "markdown"]
+draft: true
 ---
 
 This post shows how common Markdown elements render on this blog. Use it as a reference when writing.
